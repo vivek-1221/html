@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            /*width: 900px;*/
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+
+
+        .slick-list {
+            padding-top: 10% !important;
+            padding-bottom: 10% !important;
+            padding-left: 15% !important;
+            padding-right: 15% !important;
+        }
+
+        .slick-dots {
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .slick-track {
+            max-width: 100% !important;
+            transform: translate3d(0, 0, 0) !important;
+            perspective: 100px;
+        }
+
+        .slick-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            opacity: 0;
+            width: 100% !important;
+            transform: translate3d(0, 0, 0);
+            transition: transform 1s, opacity 1s;
+        }
+
+        .slick-snext,
+        .slick-sprev {
+            display: inline-block;
+        }
+
+        .slick-current {
+            opacity: 1;
+            position: relative;
+            display: block;
+            transform: translate3d(0, 0, 20px);
+            z-index: 2;
+        }
+
+        .slick-snext {
+            opacity: 1;
+            transform: translate3d(20%, 0, 0px);
+            z-index: 1;
+        }
+
+        .slick-sprev {
+            opacity: 1;
+            transform: translate3d(-20%, 0, 0px);
+        }
+
+        .test img {
+            display: block;
+            width: 100%;
+            height: 300px;
+
+            box-shadow: inset 0px 0px 0px 3px #000
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <div class="container">
+        <div class="rev_slider">
+            <div class="rev_slide">
+                <div class="test">
+                    <img src="https://media.istockphoto.com/photos/autumn-maple-leaves-falling-leaves-natural-background-picture-id1041708400?k=6&m=1041708400&s=612x612&w=0&h=fOcHQawDo1o4rb0S9RS1zxce9Y4UZRDckUNvpuf8ls8="
+                        alt="im1" />
+                </div>
+            </div>
+
+            <div class="rev_slide">
+                <div class="test">
+                    <img src="https://www.geeklawblog.com/wp-content/uploads/sites/528/2018/12/liprofile-656x369.png"
+                        alt="im2" />
+                </div>
+            </div>
+            <div class="rev_slide">
+                <div class="test">
+                    <img src="https://www.incimages.com/uploaded_files/image/1920x1080/westworld-2-hbo-background-1920_419617.jpg"
+                        alt="im3" />
+                </div>
+            </div>
+            <div class="rev_slide">
+                <div class="test">
+                    <img src="https://img.freepik.com/free-vector/neon-lights-wallpaper_52683-46462.jpg?size=626&ext=jpg"
+                        alt="im3" />
+                </div>
+            </div>
+            <div class="rev_slide">
+                <div class="test"> <img
+                        src="https://media.istockphoto.com/photos/christmas-snowflakes-on-red-background-picture-id1049681110?k=6&m=1049681110&s=612x612&w=0&h=FOm5pe_4--JxyevhCi4iw0ovwzSWiZVb_DaunDyYa-0="
+                        alt="im3" /></div>
+            </div>
+            <div class="rev_slide">
+                <div class="test">
+                    <img src="https://images.ctfassets.net/usf1vwtuqyxm/2n8JnRmzLJdYzM4SoIzVLL/3dea9275b3be7b5aef314aeb89d7616a/release_1_hagrids_hut__1_.png"
+                        alt="im3" />
+                </div>
+            </div>
+            <div class="rev_slide">
+                <div class="test">
+                    <img
+                        src="https://cdn57.androidauthority.net/wp-content/uploads/2015/11/00-best-backgrounds-and-wallpaper-apps-for-android.jpg" />
+                </div>
+            </div>
+            <div class="rev_slide">
+                <div class="test">
+                    <img src="https://wallpapercave.com/wp/wp2562825.jpg" />
+                </div>
+            </div>
+            <div class="rev_slide">
+                <div class="test">
+                    <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600,q_75,w_1000/v1/clients/napavalley/Chappellet_Vineyard_Sunset_in_Fall_42eaa7cf-a1f1-4f6b-a260-b6890a6762db.jpg"
+                        alt="im7" />
+                </div>
+            </div>
+        </div>
+        <script>
+            var rev = $('.rev_slider');
+            rev.on('init', function (event, slick, currentSlide) {
+                var
+                    cur = $(slick.$slides[slick.currentSlide]),
+                    next = cur.next(),
+                    prev = cur.prev();
+                prev.addClass('slick-sprev');
+                next.addClass('slick-snext');
+                cur.removeClass('slick-snext').removeClass('slick-sprev');
+                slick.$prev = prev;
+                slick.$next = next;
+            }).on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                console.log('beforeChange');
+                var
+                    cur = $(slick.$slides[nextSlide]);
+                console.log(slick.$prev, slick.$next);
+                slick.$prev.removeClass('slick-sprev');
+                slick.$next.removeClass('slick-snext');
+                next = cur.next(),
+                    prev = cur.prev();
+                prev.prev();
+                prev.next();
+                prev.addClass('slick-sprev');
+                next.addClass('slick-snext');
+                slick.$prev = prev;
+                slick.$next = next;
+                cur.removeClass('slick-next').removeClass('slick-sprev');
+            });
+
+            rev.slick({
+                speed: 1000,
+                arrows: true,
+                dots: false,
+                focusOnSelect: true,
+                prevArrow: '<button> prev</button>',
+                nextArrow: '<button> next</button>',
+                infinite: true,
+                centerMode: true,
+                slidesPerRow: 1,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerPadding: '0',
+                swipe: true,
+                customPaging: function (slider, i) {
+                    return '';
+                },
+                /*infinite: false,*/
+            });
+        </script>
+</body>
+
+</html>
